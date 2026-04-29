@@ -1,0 +1,29 @@
+namespace ListaDeCompras.ConsoleApp.Shared.BaseModule;
+
+public abstract class BaseRepository<T> : IRepository<T> where T : BaseEntity<T>
+{
+    protected readonly Dictionary<Guid, T> Entities = [];
+    public void Add(T entity)
+    {
+        entity.Id = Guid.NewGuid();
+        Entities.Add(entity.Id, entity);
+    }
+    public bool Edit(Guid id, T updatedEntity)
+    {
+        if (!TryGetEntity(id, out T? entity))
+            return false;
+
+        entity!.UpdateEntity(updatedEntity);
+        return true;
+    }
+    public bool Remove(Guid id)
+    {
+        return Entities.Remove(id);
+    }
+    public bool TryGetEntity(Guid id, out T? entity)
+    {
+        return Entities.TryGetValue(id, out entity);
+    }
+    public IEnumerable<T> GetAll() => Entities.Values;
+    public int Count() => Entities.Count;
+}
