@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="CategoryModule\" />
     <Folder Include="Shared\BaseModule\" />
   </ItemGroup>
 

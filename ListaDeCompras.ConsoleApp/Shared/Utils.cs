@@ -1,6 +1,3 @@
-using System;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace ListaDeCompras.ConsoleApp.Shared;
@@ -199,7 +196,7 @@ public static partial class Utils
     public static int GetValidInteger(string title, string msg, int? minValue = null, int? maxValue = null)
     {
         if (minValue > maxValue)
-            throw new ArgumentOutOfRangeException(nameof(maxValue), "maxLength cannot be less than minLength");
+            throw new ArgumentOutOfRangeException(nameof(maxValue), "maxValue cannot be less than minValue");
         while (true)
         {
             bool valid = int.TryParse(PromptBox(title, msg), out int value);
@@ -213,7 +210,7 @@ public static partial class Utils
                     return value;
             }
             else
-                MsgBox("Aviso", "Insira um valor númerico válido", type: MessageType.Warning);
+                MsgBox("Aviso", "Insira um valor numérico válido", type: MessageType.Warning);
         }
     }
     public static decimal GetValidPrice(string title, string msg)
