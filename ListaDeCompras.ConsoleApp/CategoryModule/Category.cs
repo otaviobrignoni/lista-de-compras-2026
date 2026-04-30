@@ -1,3 +1,4 @@
+using ListaDeCompras.ConsoleApp.ProductModule;
 using ListaDeCompras.ConsoleApp.Shared.BaseModule;
 
 namespace ListaDeCompras.ConsoleApp.CategoryModule;
@@ -6,6 +7,7 @@ public class Category : BaseEntity<Category>
 {
     public string Name { get; internal set; } = string.Empty;
     public string Colour { get; internal set; } = string.Empty;
+    public HashSet<Product> Products = [];
     public static readonly string[] Categories = ["Nome", "Código da cor"];
 
     public Category(string name, string colour)
@@ -14,6 +16,14 @@ public class Category : BaseEntity<Category>
         Colour = colour;
     }
     public Category(Category c) : this(c.Name, c.Colour) { }
+    public void AddProduct(Product product)
+    {
+        Products.Add(product);
+    }
+    public bool RemoveProduct(Product product)
+    {
+        return Products.Remove(product);
+    }
 
     public override bool Equals(Category category)
     {

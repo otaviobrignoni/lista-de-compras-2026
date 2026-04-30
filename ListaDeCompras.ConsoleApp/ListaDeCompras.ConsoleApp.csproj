@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="CategoryModule\" />
+    <Folder Include="ProductModule\" />
     <Folder Include="Shared\BaseModule\" />
   </ItemGroup>
 

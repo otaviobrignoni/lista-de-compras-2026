@@ -76,6 +76,11 @@ public class CategoryUI : BaseUserInterface<Category>, ICategoryUI
             return;
         }
         Category category = Select("Selecionar categoria para remover");
+        if (category.Products.Count > 0)
+        {
+            Utils.MsgBox("Aviso", "Não é possível remover uma categoria com produtos vinculados.", type: MessageType.Warning);
+            return;
+        }
         if (Repository.Remove(category.Id)) Utils.MsgBox("Sucesso", "Categoria removida com sucesso!", type: MessageType.Success);
         else Utils.MsgBox("Erro", "Erro ao remover a categoria. Tente novamente.", type: MessageType.Error);
     }
