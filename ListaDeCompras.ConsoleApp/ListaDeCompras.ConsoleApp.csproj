@@ -11,6 +11,7 @@
     <Folder Include="CategoryModule\" />
     <Folder Include="ProductModule\" />
     <Folder Include="Shared\BaseModule\" />
+    <Folder Include="ShoppingListModule\" />
   </ItemGroup>
 
 </Project>
