@@ -111,7 +111,7 @@ public class CategoryUI : BaseUserInterface<Category>, ICategoryUI
     {
         while (true)
         {
-            string name = Utils.GetValidString(title, "Nome da categoria: ", minLength: 0, maxLength: 50);
+            string name = Utils.GetValidString(title, "Nome da categoria: ", minLength: 1, maxLength: 50);
             if (GetAvailable(ignoredCategories).Any(c => c.Name == name))
                 Utils.MsgBox("Aviso", "Já existe uma categoria com esse nome.", type: MessageType.Warning);
             else return name;
