@@ -118,7 +118,7 @@ public static partial class Utils
     {
         Console.WriteLine("╰" + new string('─', MenuWidth) + "╯");
     }
-    public static void GenerateTable(string title, string[] headers, string[][] rows)
+    public static void GenerateTable(string title, string[] headers, string[][] rows, bool enterPrompt = true)
     {
         int[] columnWidths = headers.Select(h => h.VisibleLength()).ToArray();
 
@@ -157,7 +157,7 @@ public static partial class Utils
         }
 
         Console.WriteLine("╰" + string.Join("┴", columnWidths.Select(w => new string('─', w + 2))) + "╯");
-        EnterPrompt();
+        if (enterPrompt) EnterPrompt();
     }
     public static void EnterPrompt(string? msg = null)
     {
@@ -193,13 +193,13 @@ public static partial class Utils
                 return input;
         }
     }
-    public static int GetValidInteger(string title, string msg, int? minValue = null, int? maxValue = null)
+    public static decimal GetValidDecimal(string title, string msg, decimal? minValue = null, decimal? maxValue = null)
     {
         if (minValue > maxValue)
             throw new ArgumentOutOfRangeException(nameof(maxValue), "maxValue cannot be less than minValue");
         while (true)
         {
-            bool valid = int.TryParse(PromptBox(title, msg), out int value);
+            bool valid = decimal.TryParse(PromptBox(title, msg), out decimal value);
             if (valid)
             {
                 if (value < minValue)
@@ -215,7 +215,7 @@ public static partial class Utils
     }
     public static decimal GetValidPrice(string title, string msg)
     {
-        
+
         while (true)
         {
             bool valid = decimal.TryParse(PromptBox(title, msg), out decimal value);
