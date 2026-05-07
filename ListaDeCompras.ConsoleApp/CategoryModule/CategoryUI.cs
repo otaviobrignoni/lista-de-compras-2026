@@ -62,7 +62,7 @@ public class CategoryUI : BaseUserInterface<Category>, ICategoryUI
                     if (!editedCategory.Equals(category))
                     {
                         Utils.MsgBox("Sucesso", "Categoria editada com sucesso!", type: MessageType.Success);
-                        category.UpdateEntity(editedCategory);
+                        Repository.Edit(category.Id, editedCategory);
                     }
                     return;
             }

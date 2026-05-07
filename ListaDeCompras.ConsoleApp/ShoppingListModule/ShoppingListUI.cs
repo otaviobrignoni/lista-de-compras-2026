@@ -65,13 +65,13 @@ public class ShoppingListUI : BaseUserInterface<ShoppingList>, IShoppingListUI
                     editedList.Name = GetValidName(title, [shoppingList]);
                     break;
                 case 1:
-                    ListItemMenu(shoppingList);
+                    ListItemMenu(editedList);
                     break;
                 case 2:
                     if (!editedList.Equals(shoppingList))
                     {
                         Utils.MsgBox("Sucesso", "Lista de compras editada com sucesso!", type: MessageType.Success);
-                        shoppingList.UpdateEntity(editedList);
+                        Repository.Edit(shoppingList.Id, editedList);
                     }
                     return;
             }

@@ -80,7 +80,7 @@ public class ProductUI : BaseUserInterface<Product>, IProductUI
                     if (!editedProduct.Equals(product))
                     {
                         Utils.MsgBox("Sucesso", "Produto editado com sucesso!", type: MessageType.Success);
-                        product.UpdateEntity(editedProduct);
+                        Repository.Edit(product.Id, editedProduct);
                     }
                     return;
             }
