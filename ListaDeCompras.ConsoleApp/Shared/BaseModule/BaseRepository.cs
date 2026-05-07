@@ -2,13 +2,18 @@ namespace ListaDeCompras.ConsoleApp.Shared.BaseModule;
 
 public abstract class BaseRepository<T> : IRepository<T> where T : BaseEntity<T>
 {
-    protected readonly Dictionary<Guid, T> Entities = [];
-    public void Add(T entity)
+    protected Dictionary<Guid, T> Entities = [];
+    public BaseRepository() { }
+    public BaseRepository(Dictionary<Guid, T> entities)
+    {
+        Entities = entities;
+    }
+    public virtual void Add(T entity)
     {
         entity.Id = Guid.NewGuid();
         Entities.Add(entity.Id, entity);
     }
-    public bool Edit(Guid id, T updatedEntity)
+    public virtual bool Edit(Guid id, T updatedEntity)
     {
         if (!TryGetEntity(id, out T? entity))
             return false;
@@ -16,7 +21,7 @@ public abstract class BaseRepository<T> : IRepository<T> where T : BaseEntity<T>
         entity!.UpdateEntity(updatedEntity);
         return true;
     }
-    public bool Remove(Guid id)
+    public virtual bool Remove(Guid id)
     {
         return Entities.Remove(id);
     }

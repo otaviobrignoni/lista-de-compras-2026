@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using System.Text.Json;
 using ListaDeCompras.ConsoleApp.CategoryModule;
 using ListaDeCompras.ConsoleApp.ProductModule;
 using ListaDeCompras.ConsoleApp.Shared;
+using ListaDeCompras.ConsoleApp.Shared.BaseModule;
 using ListaDeCompras.ConsoleApp.ShoppingListModule;
 
 namespace ListaDeCompras.ConsoleApp;
@@ -15,11 +17,22 @@ class Program
         string title = Utils.ColourStringHex("Lista de Compras", Colours.Title);
         string[] options = ["Categorias", "Produtos", "Lista de Compras", "Sair"];
 
-        CategoryRepo categoryRepo = new();
+        JsonContext context = new();
+        try
+        {
+            context.Load();
+        }
+        catch (JsonException)
+        {
+            Utils.MsgBox("Erro", "Ocorreu um erro ao ler dados salvos:\0JSON em formato inválido", type: MessageType.Error);
+            return;
+        }
+
+        CategoryFileRepo categoryRepo = new(context);
         CategoryUI cUI = new(categoryRepo);
-        ProductRepo productRepo = new();
+        ProductFileRepo productRepo = new(context);
         ProductUI pUI = new(productRepo, cUI);
-        ShoppingListRepo shoppingListRepo = new();
+        ShoppingListFileRepo shoppingListRepo = new(context);
         ShoppingListUI sUI = new(shoppingListRepo, pUI);
 
         while (true)

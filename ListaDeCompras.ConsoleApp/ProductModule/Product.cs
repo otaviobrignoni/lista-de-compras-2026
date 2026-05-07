@@ -5,11 +5,13 @@ namespace ListaDeCompras.ConsoleApp.ProductModule;
 
 public class Product : BaseEntity<Product>
 {
-    public string Name { get; internal set; } = string.Empty;
-    public Category Category;
-    public string MeasurementUnit { get; internal set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public Category Category = null!;
+    public string MeasurementUnit { get; set; } = string.Empty;
     public decimal Price;
     public static readonly string[] Categories = ["Nome", "Categoria", "Unidade de medida", "Preço"];
+
+    public Product() { }
 
     public Product(string name, Category category, string measurementUnit, decimal price)
     {

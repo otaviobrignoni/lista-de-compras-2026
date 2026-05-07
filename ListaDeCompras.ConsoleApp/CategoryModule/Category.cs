@@ -5,10 +5,12 @@ namespace ListaDeCompras.ConsoleApp.CategoryModule;
 
 public class Category : BaseEntity<Category>
 {
-    public string Name { get; internal set; } = string.Empty;
-    public string Colour { get; internal set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public string Colour { get; set; } = string.Empty;
     public HashSet<Product> Products = [];
     public static readonly string[] Categories = ["Nome", "Código da cor"];
+
+    public Category() { }
 
     public Category(string name, string colour)
     {
