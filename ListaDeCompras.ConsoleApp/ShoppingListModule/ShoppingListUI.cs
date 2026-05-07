@@ -7,7 +7,7 @@ namespace ListaDeCompras.ConsoleApp.ShoppingListModule;
 public class ShoppingListUI : BaseUserInterface<ShoppingList>, IShoppingListUI
 {
     IProductUI pUI;
-    public ShoppingListUI(IProductUI productUI, IShoppingListRepo shoppingListRepo) : base(shoppingListRepo)
+    public ShoppingListUI(IShoppingListRepo shoppingListRepo, IProductUI productUI) : base(shoppingListRepo)
     {
         pUI = productUI;
     }
