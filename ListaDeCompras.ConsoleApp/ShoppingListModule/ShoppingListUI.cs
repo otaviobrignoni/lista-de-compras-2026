@@ -62,7 +62,7 @@ public class ShoppingListUI : BaseUserInterface<ShoppingList>, IShoppingListUI
             switch (Utils.Menu(title, options))
             {
                 case 0:
-                    editedList.Name = GetValidName(title);
+                    editedList.Name = GetValidName(title, [shoppingList]);
                     break;
                 case 1:
                     ListItemMenu(shoppingList);
