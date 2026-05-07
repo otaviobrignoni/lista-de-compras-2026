@@ -89,7 +89,7 @@ public class ShoppingListUI : BaseUserInterface<ShoppingList>, IShoppingListUI
             foreach (ListItem li in shoppingList.ListItems)
                 listItems.Add([li.Product.Name, Utils.ColourStringHex(li.Product.Category.Name, li.Product.Category.Colour), $"{li.Quantity}", $"{li.Product.Price:C2} por {li.Product.MeasurementUnit}"]);
             Utils.GenerateTable(title, categories, listItems.ToArray(), false);
-            Console.WriteLine($"ESC voltar | ENTER adicionar item | ESPAÇO remover item | Preço total estimado: {shoppingList.TotalCost:C2}");
+            Console.WriteLine($"ESC voltar | ENTER adicionar item | ESPAÇO remover item | Preço total estimado: {shoppingList.TotalCost():C2}");
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             switch (keyInfo.Key)
             {
