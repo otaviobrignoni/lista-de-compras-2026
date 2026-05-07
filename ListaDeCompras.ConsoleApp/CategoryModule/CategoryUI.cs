@@ -119,6 +119,6 @@ public class CategoryUI : BaseUserInterface<Category>, ICategoryUI
     }
     public static string GetValidColour(string title)
     {
-        return Utils.GetValidString(title, "Cor da categoria: ", pattern: @"^#?[0-9A-Fa-f]{6}$");
+        return Utils.GetValidString(title, "Cor da categoria: ", pattern: @"^#[0-9A-Fa-f]{6}$");
     }
 }
